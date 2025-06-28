@@ -3,484 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Doe | Digital Craftsman & UI/UX Architect</title>
+    <title>Alex Thorne | Digital Designer & Futurist</title>
     
-    <!-- Google Fonts: Poppins for a clean, modern look -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        /* --- CSS Reset & Global Styles --- */
-        :root {
-            --bg-color: #0d0d0d; /* Very dark gray, almost black */
-            --primary-text-color: #e0e0e0;
-            --secondary-text-color: #a0a0a0;
-            --accent-color: #ff00ff; /* Bright Magenta */
-            --card-bg-color: #1a1a1a;
-            --border-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--primary-text-color);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-        }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: white;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 6rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
-
-        /* --- Hero Section --- */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 1)),
-                        url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.5" fill="%23222"/></pattern></defs><rect width="100%" height="100%" fill="url(%23p)"/></svg>');
-        }
-
-        .hero-content h1 {
-            font-size: 4.5rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.5rem;
-            color: var(--secondary-text-color);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            border: 2px solid var(--accent-color);
-            border-radius: 50px;
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--accent-color);
-            color: white;
-            box-shadow: 0 0 20px var(--accent-color);
-        }
-
-        /* --- About Section --- */
-        #about .container p {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--secondary-text-color);
-        }
-
-        /* --- Services Section --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .service-item {
-            background-color: var(--card-bg-color);
-            padding: 2.5rem 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .service-item h3 {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .service-item p {
-            color: var(--secondary-text-color);
-        }
-
-        /* --- Portfolio Section --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .portfolio-card {
-            background-color: var(--card-bg-color);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 25px -5px var(--accent-color);
-        }
-        
-        .portfolio-image {
-            height: 200px;
-            background-color: #333;
-            /* Placeholder for project image */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-weight: 600;
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-content p {
-            color: var(--secondary-text-color);
-            font-size: 0.9rem;
-        }
-
-        /* --- Contact Section --- */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            color: var(--primary-text-color);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px -2px var(--accent-color);
-        }
-        
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-        
-        .contact-form button {
-            cursor: pointer;
-            padding: 1rem;
-            background-color: var(--accent-color);
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background-color: #e600e6; /* Slightly lighter magenta */
-        }
-
-        .social-links {
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .social-links a {
-            margin: 0 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--secondary-text-color);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-            .hero-content .subtitle {
-                font-size: 1.2rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Your Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 1. Hero Section -->
-    <header id="hero">
-        <div class="container hero-content">
-            <h1>Alex Doe</h1>
-            <p class="subtitle">Digital Craftsman & UI/UX Architect</p>
-            <a href="#portfolio" class="cta-button">View My Work</a>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">A<span>/</span>T</a>
+            <nav class="navbar">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Open menu">
+                <div class="bar"></div>
+            </button>
         </div>
     </header>
 
     <main>
-        <!-- 2. About Me Section -->
-        <section id="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <p>
-                    I am a design-obsessed creator, blending aesthetic precision with user-centric functionality. My philosophy is simple: to build digital experiences that are not only visually stunning but also intuitive, efficient, and unforgettable. I thrive at the intersection of art and technology, crafting futures one pixel at a time.
-                </p>
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="starfield">
+                <div class="stars1"></div>
+                <div class="stars2"></div>
+                <div class="stars3"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title" data-text-split>Designing The Digital Frontier</h1>
+                <p class="hero-subtitle">Crafting bold, intuitive, and futuristic user experiences that transcend the ordinary.</p>
+                <a href="#work" class="btn btn-primary interactive">Explore My Work</a>
             </div>
         </section>
 
-        <!-- 3. Services Section -->
-        <section id="services">
+        <!-- ABOUT SECTION -->
+        <section class="content-section" id="about">
             <div class="container">
-                <h2 class="section-title">Services</h2>
-                <div class="services-grid">
-                    <div class="service-item">
-                        <h3>UI/UX Design</h3>
-                        <p>Crafting intuitive and engaging user interfaces that provide a seamless user experience across all devices.</p>
+                <h2 class="section-title">01 <span>//</span> About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>My Philosophy</h3>
+                        <p>Design is the art of solving problems with elegance. I operate at the intersection of aesthetic theory and technological innovation, building interfaces that are not just beautiful, but are extensions of human intuition. My work is fueled by a passion for minimalism, sci-fi, and pushing the boundaries of what's possible on the web.</p>
+                        <h3>Core Competencies</h3>
+                        <ul class="skills-list">
+                            <li class="interactive">UI/UX Design</li>
+                            <li class="interactive">Web & Mobile Design</li>
+                            <li class="interactive">Branding & Identity</li>
+                            <li class="interactive">Interaction Design</li>
+                            <li class="interactive">Figma / Adobe XD</li>
+                            <li class="interactive">Webflow Development</li>
+                        </ul>
                     </div>
-                    <div class="service-item">
-                        <h3>Web Development</h3>
-                        <p>Building responsive, high-performance websites with clean code and modern frameworks.</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Brand Identity</h3>
-                        <p>Creating memorable brand identities, from logo design to a complete visual system that tells your story.</p>
+                    <div class="about-image interactive">
+                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="A photo of Alex Thorne">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Portfolio Section -->
-        <section id="portfolio">
+        <!-- WORK SECTION -->
+        <section class="content-section" id="work">
             <div class="container">
-                <h2 class="section-title">My Work</h2>
+                <h2 class="section-title">02 <span>//</span> Selected Work</h2>
                 <div class="portfolio-grid">
                     <!-- Project 1 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Project Nova</h3>
-                            <p>A next-generation analytics dashboard for a leading tech startup.</p>
+                    <a href="#" class="portfolio-item interactive">
+                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus">
+                        <div class="portfolio-overlay">
+                            <h3>Project Cygnus</h3>
+                            <p>UI/UX for a Next-Gen Music App</p>
                         </div>
-                    </div>
+                    </a>
                     <!-- Project 2 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Cygnus Interface</h3>
-                            <p>Complete UI/UX overhaul for an interstellar travel booking platform.</p>
+                    <a href="#" class="portfolio-item interactive">
+                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Orion">
+                        <div class="portfolio-overlay">
+                            <h3>Orion Branding</h3>
+                            <p>Brand Identity for a Tech Startup</p>
                         </div>
-                    </div>
+                    </a>
                     <!-- Project 3 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Aura Branding</h3>
-                            <p>Brand identity and web presence for a futuristic wellness application.</p>
+                    <a href="#" class="portfolio-item interactive">
+                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Vega">
+                        <div class="portfolio-overlay">
+                            <h3>Vega AI Website</h3>
+                            <p>Web Design for an AI Research Firm</p>
                         </div>
-                    </div>
+                    </a>
                     <!-- Project 4 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Helios E-commerce</h3>
-                            <p>A slick, minimalist e-commerce experience for a luxury watch brand.</p>
+                    <a href="#" class="portfolio-item interactive">
+                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Andromeda">
+                        <div class="portfolio-overlay">
+                            <h3>Andromeda Dashboard</h3>
+                            <p>Data Visualization & UI Design</p>
                         </div>
-                    </div>
-                    <!-- Project 5 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Orion OS Concept</h3>
-                            <p>A conceptual design for a futuristic, gesture-based operating system.</p>
-                        </div>
-                    </div>
-                    <!-- Project 6 -->
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">PROJECT THUMBNAIL</div>
-                        <div class="portfolio-content">
-                            <h3>Nexus Portal</h3>
-                            <p>A secure client portal with a focus on data visualization and clarity.</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- 5. Contact Section -->
-        <section id="contact">
+        <!-- CONTACT SECTION -->
+        <section class="content-section" id="contact">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <form class="contact-form" action="#" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-                <div class="social-links">
-                    <a href="#" target="_blank">GitHub</a>
-                    <a href="#" target="_blank">Dribbble</a>
-                    <a href="#" target="_blank">LinkedIn</a>
+                <h2 class="section-title">03 <span>//</span> Let's Collaborate</h2>
+                <p class="contact-intro">Have a visionary project? I'm currently available for freelance opportunities. Let's build the future together.</p>
+                <div class="contact-form-container">
+                    <form action="#" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" required placeholder="Your Name" class="interactive">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" required placeholder="Your Email" class="interactive">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" rows="5" required placeholder="Project Details" class="interactive"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary interactive">Send Transmission</button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <!-- FOOTER -->
+    <footer class="footer">
         <div class="container">
-            <p>© 2024 Alex Doe. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-socials">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>© 2024 Alex Thorne. All Rights Reserved. Built from scratch.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // --- Simple JavaScript for smooth scrolling & scroll animations ---
-
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Smooth scroll for internal links
-            const links = document.querySelectorAll('a[href^="#"]');
-            for (const link of links) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            }
-
-            // Intersection Observer for fade-in animation on scroll
-            const sections = document.querySelectorAll('section');
-            const observerOptions = {
-                root: null, // observes intersections relative to the viewport
-                rootMargin: '0px',
-                threshold: 0.1 // trigger when 10% of the element is visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once it's visible
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Manually trigger hero section to be visible on load
-            document.querySelector('#hero').classList.add('visible');
-        });
-    </script>
+    <!-- Your Script -->
+    <script src="script.js"></script>
 
 </body>
 </html>
