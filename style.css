@@ -329,12 +329,18 @@ img { max-width: 100%; display: block; object-fit: cover; }
     gap: 1.5rem;
     max-height: 0;
     overflow: hidden;
+    /* <<< FIX: Set vertical padding/margin to 0 in the default collapsed state */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    /* <<< FIX: Ensure all properties are included in the transition */
     transition: max-height 0.5s ease-in-out, padding-bottom 0.5s ease-in-out, margin-top 0.5s ease-in-out;
 }
 .accordion-item.is-active .accordion-item__gallery {
-    max-height: 1000px; /* Generous height for images */
+    max-height: 1000px;
+    /* <<< FIX: Apply padding/margin only when the item is active */
     padding-bottom: var(--spacing-md);
-    margin-top: calc(-1 * var(--spacing-sm)); /* Pull gallery up slightly */
+    margin-top: calc(-1 * var(--spacing-sm));
 }
 .accordion-item__gallery img {
     border-radius: 4px;
@@ -508,7 +514,6 @@ img { max-width: 100%; display: block; object-fit: cover; }
 .lightbox__nav:hover {
     background-color: var(--accent-color);
 }
-/* FIX: Position nav buttons inside the viewport on all screen sizes */
 .lightbox__prev { left: 20px; }
 .lightbox__next { right: 20px; }
 
@@ -568,6 +573,41 @@ img { max-width: 100%; display: block; object-fit: cover; }
     .enlarge-btn {
         opacity: 1;
         transform: scale(1);
+    }
+    
+    /* Make project galleries horizontally scrollable on mobile */
+    .accordion-item__gallery {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        gap: 1rem;
+        padding-bottom: 0; /* <<< FIX: Set padding to 0 in collapsed state */
+    }
+    
+    .accordion-item.is-active .accordion-item__gallery {
+        overflow-x: auto;
+        padding-bottom: 1rem; /* <<< FIX: Apply padding only when active */
+    }
+
+    .accordion-item__gallery .gallery-image-wrapper {
+        flex-shrink: 0;
+        height: 120px;
+        width: 180px;
+        aspect-ratio: 3/2;
+    }
+
+    /* Custom scrollbar for the mobile gallery */
+    .accordion-item__gallery::-webkit-scrollbar {
+        height: 6px;
+    }
+    .accordion-item__gallery::-webkit-scrollbar-track {
+        background: rgba(20, 20, 28, 0.5);
+        border-radius: 10px;
+    }
+    .accordion-item__gallery::-webkit-scrollbar-thumb {
+        background-color: var(--accent-color);
+        border-radius: 10px;
     }
 }
 
