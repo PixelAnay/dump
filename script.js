@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
     const linkElements = document.querySelectorAll('a, button');
-    const formInputs = document.querySelectorAll('input, textarea');
+    const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
@@ -48,48 +48,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // --- WORK SECTION INTERACTIVITY ---
-    const workItems = document.querySelectorAll('.work-item');
+    // --- DESKTOP WORK SECTION INTERACTIVITY ---
+    const workItemsDesktop = document.querySelectorAll('.work-item');
     const workPreview = document.querySelector('.work-image-preview');
-    const workPreviewImg = workPreview ? workPreview.querySelector('img') : null;
+    if (workPreview) { // Check if the element exists to avoid errors on mobile
+        const workPreviewImg = workPreview.querySelector('img');
+        const workTitlesContainer = document.querySelector('.work-titles');
 
-    workItems.forEach(item => {
-        // Desktop Hover Logic
-        item.addEventListener('mouseover', function() {
-            if (window.innerWidth > 900) {
+        workItemsDesktop.forEach(item => {
+            item.addEventListener('mouseover', function() {
                 const imageUrl = this.dataset.image;
-                if (workPreviewImg) {
-                    workPreviewImg.src = imageUrl;
-                    workPreview.classList.add('is-visible');
-                }
-            }
+                workPreviewImg.src = imageUrl;
+                workPreview.classList.add('is-visible');
+            });
         });
 
-        // Mobile Accordion Click Logic
-        item.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                // If this item is already active, close it. Otherwise, open it.
-                if (this.classList.contains('is-active')) {
-                    this.classList.remove('is-active');
-                } else {
-                    // Close any other open items first
-                    workItems.forEach(i => i.classList.remove('is-active'));
-                    this.classList.add('is-active');
-                }
-            }
-        });
-    });
-
-    // Hide preview when mouse leaves the entire list area on desktop
-    const workListContainer = document.querySelector('.work-list-container');
-    if(workListContainer) {
-        workListContainer.addEventListener('mouseleave', function() {
-            if (window.innerWidth > 900) {
-                workPreview.classList.remove('is-visible');
-            }
+        workTitlesContainer.addEventListener('mouseleave', function() {
+            workPreview.classList.remove('is-visible');
         });
     }
+
+
+    // --- MOBILE WORK ACCORDION (FIX: New Logic) ---
+    const workItemsMobile = document.querySelectorAll('.work-item-mobile');
+    workItemsMobile.forEach(item => {
+        const title = item.querySelector('.work-item-mobile__title');
+        title.addEventListener('click', () => {
+            item.classList.toggle('is-active');
+            // Update ARIA attribute for accessibility
+            const isExpanded = item.classList.contains('is-active');
+            title.setAttribute('aria-expanded', isExpanded);
+        });
+    });
 
 
     // --- HERO TEXT SPLIT & ANIMATE ---

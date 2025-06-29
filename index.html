@@ -80,50 +80,63 @@
         <section class="content-section" id="work">
             <div class="container">
                 <h2 class="section-title">02 <span>//</span> Selected Work</h2>
-                <div class="work-list-container">
+                
+                <!-- Desktop Layout -->
+                <div class="work-list-desktop">
                     <div class="work-titles">
-                        <!-- FIX: HTML structure updated for mobile accordion -->
                         <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg1.jpg">
-                            <div class="work-item-content">
-                                <h3>Project Cygnus</h3>
-                                <p>UI/UX for a Next-Gen Music App</p>
-                            </div>
-                            <div class="work-item-image-mobile">
-                                <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus preview">
-                            </div>
+                            <h3>Project Cygnus</h3>
+                            <p>UI/UX for a Next-Gen Music App</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                            <div class="work-item-content">
-                                <h3>Orion Branding</h3>
-                                <p>Brand Identity for a Tech Startup</p>
-                            </div>
-                            <div class="work-item-image-mobile">
-                                <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Orion Branding preview">
-                            </div>
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg2.jpg">
+                            <h3>Orion Branding</h3>
+                            <p>Brand Identity for a Tech Startup</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://images.unsplash.com/photo-1521193089946-7aa29d1c79e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80">
-                            <div class="work-item-content">
-                                <h3>Vega AI Website</h3>
-                                <p>Web Design for an AI Research Firm</p>
-                            </div>
-                            <div class="work-item-image-mobile">
-                                <img src="https://images.unsplash.com/photo-1521193089946-7aa29d1c79e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Vega AI Website preview">
-                            </div>
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg3.jpg">
+                            <h3>Vega AI Website</h3>
+                            <p>Web Design for an AI Research Firm</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://images.unsplash.com/photo-1554189097-90d3b6016a42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                            <div class="work-item-content">
-                                <h3>Andromeda Dashboard</h3>
-                                <p>Data Visualization & UI Design</p>
-                            </div>
-                             <div class="work-item-image-mobile">
-                                <img src="https://images.unsplash.com/photo-1554189097-90d3b6016a42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Andromeda Dashboard preview">
-                            </div>
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg4.jpg">
+                            <h3>Andromeda Dashboard</h3>
+                            <p>Data Visualization & UI Design</p>
                         </a>
                     </div>
                     <div class="work-image-preview">
                         <img src="" alt="Project preview image">
                     </div>
                 </div>
+                
+                <!-- Mobile Accordion Layout -->
+                <div class="work-list-mobile">
+                    <div class="work-item-mobile is-active">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-1">
+                            <div>
+                                <h3>Project Cygnus</h3>
+                                <p>UI/UX for a Next-Gen Music App</p>
+                            </div>
+                            <span class="toggle-icon"></span>
+                        </div>
+                        <div class="work-item-mobile__gallery" id="gallery-1">
+                            <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus Image 1">
+                            <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2">
+                        </div>
+                    </div>
+                    <div class="work-item-mobile is-active">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-2">
+                            <div>
+                                <h3>Orion Branding</h3>
+                                <p>Brand Identity for a Tech Startup</p>
+                            </div>
+                            <span class="toggle-icon"></span>
+                        </div>
+                        <div class="work-item-mobile__gallery" id="gallery-2">
+                            <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Orion Branding Image 1">
+                            <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Orion Branding Image 2">
+                        </div>
+                    </div>
+                    <!-- Add more mobile projects as needed -->
+                </div>
+
             </div>
         </section>
 

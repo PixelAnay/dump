@@ -44,6 +44,8 @@ a, button {
 }
 input[type="text"], input[type="email"], textarea {
     cursor: none;
+    /* FIX: Hides the native blinking text cursor in form fields */
+    caret-color: transparent;
 }
 
 /* Custom Scrollbar */
@@ -269,19 +271,20 @@ img { max-width: 100%; display: block; object-fit: cover; }
 
 
 /* --- WORK SECTION --- */
-.work-list-container {
+.work-list-desktop {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-lg);
     align-items: flex-start;
 }
+.work-list-mobile { display: none; }
 .work-item {
     display: block;
+    padding: var(--spacing-md) 0;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-secondary);
     transition: color var(--transition-med);
 }
-.work-item-content { padding: var(--spacing-md) 0; }
 .work-item:first-child { border-top: 1px solid var(--border-color); }
 .work-item:hover { color: var(--text-primary); }
 .work-item h3 {
@@ -299,15 +302,13 @@ img { max-width: 100%; display: block; object-fit: cover; }
     overflow: hidden;
 }
 .work-image-preview img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     aspect-ratio: 4/3;
     opacity: 0;
     transform: scale(1.1);
     transition: opacity var(--transition-med), transform var(--transition-med);
 }
 .work-image-preview.is-visible img { opacity: 1; transform: scale(1); }
-.work-item-image-mobile { display: none; }
 
 
 /* --- CONTACT SECTION --- */
@@ -327,8 +328,6 @@ img { max-width: 100%; display: block; object-fit: cover; }
     border-radius: 5px; color: var(--text-primary);
     font-family: var(--font-body); font-size: 1rem;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    /* FIX: Hide the native blinking caret */
-    caret-color: transparent;
 }
 .contact-form input:focus, .contact-form textarea:focus {
     outline: none;
@@ -368,6 +367,66 @@ img { max-width: 100%; display: block; object-fit: cover; }
 
 
 /* --- RESPONSIVE DESIGN --- */
+
+@media (max-width: 900px) {
+    /* Hide desktop work list and show mobile version */
+    .work-list-desktop { display: none; }
+    .work-list-mobile { display: block; }
+    
+    .work-item-mobile {
+        border-bottom: 1px solid var(--border-color);
+    }
+    .work-item-mobile:first-child {
+        border-top: 1px solid var(--border-color);
+    }
+    .work-item-mobile__title {
+        padding: var(--spacing-sm) 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .work-item-mobile__title h3 { font-size: 1.25rem; }
+    .work-item-mobile__title p { font-size: 0.9rem; }
+    .toggle-icon {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        flex-shrink: 0;
+        margin-left: 1rem;
+    }
+    .toggle-icon::before, .toggle-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: var(--accent-color);
+        transition: transform 0.3s ease-in-out;
+    }
+    .toggle-icon::before { transform: translate(-50%, -50%) rotate(90deg); }
+    .toggle-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+    
+    .work-item-mobile.is-active .toggle-icon::before { transform: translate(-50%, -50%) rotate(0); }
+    .work-item-mobile.is-active .toggle-icon::after { transform: translate(-50%, -50%) rotate(0); }
+
+    .work-item-mobile__gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out, padding-bottom 0.5s ease-in-out;
+    }
+    .work-item-mobile.is-active .work-item-mobile__gallery {
+        max-height: 600px; /* Adjust if more images are added */
+        padding-bottom: var(--spacing-sm);
+    }
+    .work-item-mobile__gallery img {
+        border-radius: 4px;
+    }
+}
+
 @media (max-width: 1024px) {
     .navbar { display: none; }
     .hamburger {
@@ -404,25 +463,6 @@ img { max-width: 100%; display: block; object-fit: cover; }
     .nav-open .navbar { transform: translateX(0); }
     .nav-link { font-size: 2rem; margin: 1rem 0; }
 }
-
-@media (max-width: 900px) {
-    /* FIX: Implement mobile accordion for work section */
-    .work-list-container { grid-template-columns: 1fr; }
-    .work-image-preview { display: none; }
-    .work-item-image-mobile {
-        display: block;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-        border-radius: 8px;
-        margin-top: var(--spacing-sm);
-    }
-    .work-item.is-active .work-item-image-mobile {
-        max-height: 500px; /* Adjust as needed */
-    }
-    .work-item.is-active h3 { color: var(--accent-color); }
-}
-
 @media (max-width: 768px) {
     .about-content { grid-template-columns: 1fr; gap: var(--spacing-md); }
     .about-image { grid-row: 1; max-width: 300px; margin: 0 auto; }
