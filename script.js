@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
     const linkElements = document.querySelectorAll('a, button');
-    const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    const formInputs = document.querySelectorAll('input, textarea');
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
@@ -51,59 +51,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- WORK SECTION INTERACTIVITY ---
     const workItems = document.querySelectorAll('.work-item');
     const workPreview = document.querySelector('.work-image-preview');
-    const workPreviewImg = workPreview.querySelector('img');
-    const workSection = document.querySelector('#work');
+    const workPreviewImg = workPreview ? workPreview.querySelector('img') : null;
 
-    // Desktop hover logic
-    if (window.innerWidth > 900) {
-        workItems.forEach(item => {
-            item.addEventListener('mouseover', function() {
+    workItems.forEach(item => {
+        // Desktop Hover Logic
+        item.addEventListener('mouseover', function() {
+            if (window.innerWidth > 900) {
                 const imageUrl = this.dataset.image;
-                workPreviewImg.src = imageUrl;
-                workPreview.classList.add('is-visible');
-            });
-            item.addEventListener('mouseleave', function() {
+                if (workPreviewImg) {
+                    workPreviewImg.src = imageUrl;
+                    workPreview.classList.add('is-visible');
+                }
+            }
+        });
+
+        // Mobile Accordion Click Logic
+        item.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                // If this item is already active, close it. Otherwise, open it.
+                if (this.classList.contains('is-active')) {
+                    this.classList.remove('is-active');
+                } else {
+                    // Close any other open items first
+                    workItems.forEach(i => i.classList.remove('is-active'));
+                    this.classList.add('is-active');
+                }
+            }
+        });
+    });
+
+    // Hide preview when mouse leaves the entire list area on desktop
+    const workListContainer = document.querySelector('.work-list-container');
+    if(workListContainer) {
+        workListContainer.addEventListener('mouseleave', function() {
+            if (window.innerWidth > 900) {
                 workPreview.classList.remove('is-visible');
-            });
+            }
         });
     }
 
-    // FIX: Mobile scroll-based logic
-    if (window.innerWidth <= 900) {
-        let workObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // When an item is in view, update the image and make preview visible
-                        workItems.forEach(item => item.classList.remove('is-active'));
-                        entry.target.classList.add('is-active');
-                        workPreviewImg.src = entry.target.dataset.image;
-                        workPreview.classList.add('is-visible');
-                    }
-                });
-            },
-            { 
-              // Trigger when item is in the middle 20% of the screen
-              rootMargin: '-40% 0px -40% 0px',
-              threshold: 0
-            }
-        );
-
-        workItems.forEach(item => workObserver.observe(item));
-
-        // Hide the preview when the entire work section is out of view
-        let sectionObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        workPreview.classList.remove('is-visible');
-                    }
-                });
-            }, { threshold: 0 }
-        );
-        sectionObserver.observe(workSection);
-    }
-    
 
     // --- HERO TEXT SPLIT & ANIMATE ---
     const textToSplit = document.querySelector('[data-text-split]');
@@ -153,12 +140,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.content-section');
 
     const revealSection = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
+        const [entry] = entries;
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
     };
 
     const sectionObserver = new IntersectionObserver(revealSection, {
