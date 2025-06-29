@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
-    const interactiveElements = document.querySelectorAll('a, button, .interactive, .enlarge-icon, .lightbox-nav, .lightbox-close');
+    const interactiveElements = document.querySelectorAll('a, button, .project-card');
     const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
     let mouseX = 0, mouseY = 0;
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function animateCursor() {
-        if (document.body.classList.contains('lightbox-open')) return;
         cursorX += (mouseX - cursorX) * smoothing;
         cursorY += (mouseY - cursorY) * smoothing;
         cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     interactiveElements.forEach(el => {
         el.addEventListener('mouseover', () => {
-            if (el.classList.contains('interactive') || el.classList.contains('btn')) {
+            if (el.classList.contains('interactive') || el.classList.contains('btn') || el.classList.contains('project-card')) {
                 cursor.classList.add('grow');
             } else {
                 cursor.classList.add('link-hover');
@@ -48,128 +47,67 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('blur', () => cursor.classList.remove('typing'));
     });
 
-
-    // --- DESKTOP WORK SECTION INTERACTIVITY ---
-    const workItemsDesktop = document.querySelectorAll('.work-item');
-    const workPreviewContainer = document.querySelector('.work-image-preview');
-    if (workPreviewContainer) {
-        const workPreviewImg = workPreviewContainer.querySelector('img');
-        const workTitlesContainer = document.querySelector('.work-titles');
-        let currentActiveWorkItem = null;
-
-        workItemsDesktop.forEach(item => {
-            item.addEventListener('mouseover', function() {
-                const imageUrl = this.dataset.image;
-                workPreviewImg.src = imageUrl;
-                workPreviewContainer.classList.add('is-visible');
-                currentActiveWorkItem = this;
-            });
-        });
-
-        workTitlesContainer.addEventListener('mouseleave', function() {
-            workPreviewContainer.classList.remove('is-visible');
-            currentActiveWorkItem = null;
-        });
-
-        workPreviewContainer.addEventListener('click', () => {
-            if (currentActiveWorkItem) {
-                const galleryImages = currentActiveWorkItem.dataset.galleryImages.split(',');
-                openLightbox(galleryImages, 0);
-            }
-        });
-    }
-
-
-    // --- MOBILE WORK ACCORDION ---
-    const workItemsMobile = document.querySelectorAll('.work-item-mobile');
-    workItemsMobile.forEach(item => {
-        const title = item.querySelector('.work-item-mobile__title');
-        title.addEventListener('click', () => {
-            // Close other items
-            if (!item.classList.contains('is-active')) {
-                workItemsMobile.forEach(otherItem => {
-                    if (otherItem.classList.contains('is-active')) {
-                        otherItem.classList.remove('is-active');
-                        otherItem.querySelector('.work-item-mobile__title').setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-            // Toggle current item
-            item.classList.toggle('is-active');
-            const isExpanded = item.classList.contains('is-active');
-            title.setAttribute('aria-expanded', isExpanded);
-        });
-    });
-    
-
-    // --- IMAGE LIGHTBOX GALLERY ---
+    // --- LIGHTBOX GALLERY LOGIC (NEW) ---
+    const projectCards = document.querySelectorAll('.project-card');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('.lightbox-image');
-    const lightboxClose = lightbox.querySelector('.lightbox-close');
-    const lightboxPrev = lightbox.querySelector('.lightbox-prev');
-    const lightboxNext = lightbox.querySelector('.lightbox-next');
-    const mobileGalleries = document.querySelector('.work-list-mobile');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
 
-    let currentImageIndex;
-    let currentGallery = [];
+    let currentGalleryImages = [];
+    let currentIndex = 0;
 
-    function openLightbox(gallery, index) {
+    const showImage = (index) => {
+        const image = currentGalleryImages[index];
+        lightboxImg.src = image.src;
+        lightboxImg.alt = image.alt;
+        lightboxCounter.textContent = `${index + 1} / ${currentGalleryImages.length}`;
+        currentIndex = index;
+    };
+    
+    const openLightbox = (e) => {
+        const card = e.currentTarget;
+        const galleryId = card.dataset.galleryId;
+        const gallery = document.getElementById(galleryId);
+        currentGalleryImages = Array.from(gallery.querySelectorAll('img'));
+        
         document.body.classList.add('lightbox-open');
-        currentGallery = gallery;
-        currentImageIndex = index;
-        updateLightboxImage();
         lightbox.classList.add('is-visible');
-    }
+        showImage(0); // Show the first image
+    };
 
-    function closeLightbox() {
+    const closeLightbox = () => {
         document.body.classList.remove('lightbox-open');
         lightbox.classList.remove('is-visible');
-    }
+    };
 
-    function updateLightboxImage() {
-        lightboxImg.src = currentGallery[currentImageIndex];
-        lightboxPrev.style.display = currentImageIndex === 0 ? 'none' : 'block';
-        lightboxNext.style.display = currentImageIndex === currentGallery.length - 1 ? 'none' : 'block';
-    }
+    const showNextImage = () => {
+        const nextIndex = (currentIndex + 1) % currentGalleryImages.length;
+        showImage(nextIndex);
+    };
 
-    function showNextImage() {
-        if (currentImageIndex < currentGallery.length - 1) {
-            currentImageIndex++;
-            updateLightboxImage();
-        }
-    }
+    const showPrevImage = () => {
+        const prevIndex = (currentIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+        showImage(prevIndex);
+    };
 
-    function showPrevImage() {
-        if (currentImageIndex > 0) {
-            currentImageIndex--;
-            updateLightboxImage();
-        }
-    }
-
-    if (mobileGalleries) {
-        mobileGalleries.addEventListener('click', function(e) {
-            const enlargeIcon = e.target.closest('.enlarge-icon');
-            if (enlargeIcon) {
-                const wrapper = enlargeIcon.closest('.gallery-image-wrapper');
-                const galleryContainer = wrapper.closest('.work-item-mobile__gallery');
-                const images = Array.from(galleryContainer.querySelectorAll('img'));
-                const gallerySrcs = images.map(img => img.src);
-                const clickedIndex = images.findIndex(img => img === wrapper.querySelector('img'));
-                
-                openLightbox(gallerySrcs, clickedIndex);
-            }
-        });
-    }
-
+    projectCards.forEach(card => card.addEventListener('click', openLightbox));
     lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => e.target === lightbox && closeLightbox());
     lightboxNext.addEventListener('click', showNextImage);
     lightboxPrev.addEventListener('click', showPrevImage);
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('is-visible')) {
-            if (e.key === 'ArrowRight') showNextImage();
-            if (e.key === 'ArrowLeft') showPrevImage();
-            if (e.key === 'Escape') closeLightbox();
+
+    // Close lightbox with Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-visible')) {
+            closeLightbox();
+        }
+    });
+    // Close lightbox on background click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
         }
     });
 
@@ -180,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textToSplit.innerHTML = '';
         text.split('').forEach((char, index) => {
             const span = document.createElement('span');
-            span.innerHTML = char === ' ' ? ' ' : char; // Use   for spaces
+            span.innerHTML = char === ' ' ? ' ' : char; // Use non-breaking space
             span.style.animationDelay = `${index * 0.04}s`;
             textToSplit.appendChild(span);
         });
@@ -208,11 +146,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     hamburger.addEventListener('click', () => {
         document.body.classList.toggle('nav-open');
+        hamburger.classList.toggle('is-active');
+        navMenu.classList.toggle('is-active');
     });
     
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             document.body.classList.remove('nav-open');
+            hamburger.classList.remove('is-active');
+            navMenu.classList.remove('is-active');
         });
     });
 
