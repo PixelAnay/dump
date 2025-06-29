@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
     const interactiveElements = document.querySelectorAll('.interactive');
-    const linkElements = document.querySelectorAll('a:not(.interactive), .nav-link, .footer-socials a');
+    const linkElements = document.querySelectorAll('a, button'); // Simplified selector
+    // FIX: Select form inputs for special cursor state
+    const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
     const smoothing = 0.2;
 
     window.addEventListener('mousemove', e => {
@@ -24,26 +24,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     animateCursor();
 
-    // Handle hover states for all interactive elements
-    interactiveElements.forEach(el => {
+    linkElements.forEach(el => {
         el.addEventListener('mouseover', () => {
-            cursor.classList.add('grow');
+            if (el.classList.contains('btn') || el.classList.contains('interactive')) {
+                cursor.classList.add('grow');
+            } else {
+                cursor.classList.add('link-hover');
+            }
             if (el.classList.contains('btn')) {
                 el.classList.add('is-hovered');
             }
         });
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('grow');
+            cursor.classList.remove('link-hover');
             if (el.classList.contains('btn')) {
                 el.classList.remove('is-hovered');
             }
         });
     });
+    
+    // FIX: Add/remove 'typing' class on form focus/blur
+    formInputs.forEach(input => {
+        input.addEventListener('focus', () => cursor.classList.add('typing'));
+        input.addEventListener('blur', () => cursor.classList.remove('typing'));
+    });
 
-    // Handle hover state for simple text links
-    linkElements.forEach(el => {
-        el.addEventListener('mouseover', () => cursor.classList.add('link-hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('link-hover'));
+
+    // --- WORK SECTION INTERACTIVITY (FIX: New Logic) ---
+    const workItems = document.querySelectorAll('.work-item');
+    const workPreview = document.querySelector('.work-image-preview');
+    const workPreviewImg = workPreview.querySelector('img');
+    const workTitlesContainer = document.querySelector('.work-titles');
+
+    workItems.forEach(item => {
+        item.addEventListener('mouseover', function() {
+            const imageUrl = this.dataset.image;
+            workPreviewImg.src = imageUrl;
+            workPreview.classList.add('is-visible');
+        });
+    });
+
+    workTitlesContainer.addEventListener('mouseleave', function() {
+        workPreview.classList.remove('is-visible');
     });
 
 
@@ -104,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sectionObserver = new IntersectionObserver(revealSection, {
         root: null,
-        threshold: 0.15,
+        threshold: 0.1, // Adjusted for new work section
     });
 
     sections.forEach(section => {
