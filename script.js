@@ -2,9 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
-    const interactiveElements = document.querySelectorAll('.interactive');
-    const linkElements = document.querySelectorAll('a, button'); // Simplified selector
-    // FIX: Select form inputs for special cursor state
+    const linkElements = document.querySelectorAll('a, button');
     const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
     let mouseX = 0, mouseY = 0;
@@ -26,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     linkElements.forEach(el => {
         el.addEventListener('mouseover', () => {
-            if (el.classList.contains('btn') || el.classList.contains('interactive')) {
+            if (el.classList.contains('interactive') || el.classList.contains('btn')) {
                 cursor.classList.add('grow');
             } else {
                 cursor.classList.add('link-hover');
@@ -44,31 +42,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // FIX: Add/remove 'typing' class on form focus/blur
     formInputs.forEach(input => {
         input.addEventListener('focus', () => cursor.classList.add('typing'));
         input.addEventListener('blur', () => cursor.classList.remove('typing'));
     });
 
 
-    // --- WORK SECTION INTERACTIVITY (FIX: New Logic) ---
+    // --- WORK SECTION INTERACTIVITY ---
     const workItems = document.querySelectorAll('.work-item');
     const workPreview = document.querySelector('.work-image-preview');
     const workPreviewImg = workPreview.querySelector('img');
-    const workTitlesContainer = document.querySelector('.work-titles');
+    const workSection = document.querySelector('#work');
 
-    workItems.forEach(item => {
-        item.addEventListener('mouseover', function() {
-            const imageUrl = this.dataset.image;
-            workPreviewImg.src = imageUrl;
-            workPreview.classList.add('is-visible');
+    // Desktop hover logic
+    if (window.innerWidth > 900) {
+        workItems.forEach(item => {
+            item.addEventListener('mouseover', function() {
+                const imageUrl = this.dataset.image;
+                workPreviewImg.src = imageUrl;
+                workPreview.classList.add('is-visible');
+            });
+            item.addEventListener('mouseleave', function() {
+                workPreview.classList.remove('is-visible');
+            });
         });
-    });
+    }
 
-    workTitlesContainer.addEventListener('mouseleave', function() {
-        workPreview.classList.remove('is-visible');
-    });
+    // FIX: Mobile scroll-based logic
+    if (window.innerWidth <= 900) {
+        let workObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // When an item is in view, update the image and make preview visible
+                        workItems.forEach(item => item.classList.remove('is-active'));
+                        entry.target.classList.add('is-active');
+                        workPreviewImg.src = entry.target.dataset.image;
+                        workPreview.classList.add('is-visible');
+                    }
+                });
+            },
+            { 
+              // Trigger when item is in the middle 20% of the screen
+              rootMargin: '-40% 0px -40% 0px',
+              threshold: 0
+            }
+        );
 
+        workItems.forEach(item => workObserver.observe(item));
+
+        // Hide the preview when the entire work section is out of view
+        let sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        workPreview.classList.remove('is-visible');
+                    }
+                });
+            }, { threshold: 0 }
+        );
+        sectionObserver.observe(workSection);
+    }
+    
 
     // --- HERO TEXT SPLIT & ANIMATE ---
     const textToSplit = document.querySelector('[data-text-split]');
@@ -118,16 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('.content-section');
 
     const revealSection = (entries, observer) => {
-        const [entry] = entries;
-        if (!entry.isIntersecting) return;
-
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
     };
 
     const sectionObserver = new IntersectionObserver(revealSection, {
         root: null,
-        threshold: 0.1, // Adjusted for new work section
+        threshold: 0.1,
     });
 
     sections.forEach(section => {
