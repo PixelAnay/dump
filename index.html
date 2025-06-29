@@ -32,6 +32,8 @@
             </nav>
             <button class="hamburger" aria-label="Open menu">
                 <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </button>
         </div>
     </header>
@@ -84,24 +86,25 @@
                 <!-- Desktop Layout -->
                 <div class="work-list-desktop">
                     <div class="work-titles">
-                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg1.jpg">
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg1.jpg" data-gallery-images="https://anay.pages.dev/assets/bg1.jpg,https://anay.pages.dev/assets/bg2.jpg,https://anay.pages.dev/assets/bg3.jpg">
                             <h3>Project Cygnus</h3>
                             <p>UI/UX for a Next-Gen Music App</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg2.jpg">
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg2.jpg" data-gallery-images="https://anay.pages.dev/assets/bg2.jpg,https://anay.pages.dev/assets/bg4.jpg">
                             <h3>Orion Branding</h3>
                             <p>Brand Identity for a Tech Startup</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg3.jpg">
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg3.jpg" data-gallery-images="https://anay.pages.dev/assets/bg3.jpg,https://anay.pages.dev/assets/bg1.jpg">
                             <h3>Vega AI Website</h3>
                             <p>Web Design for an AI Research Firm</p>
                         </a>
-                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg4.jpg">
+                        <a href="#" class="work-item" data-image="https://anay.pages.dev/assets/bg4.jpg" data-gallery-images="https://anay.pages.dev/assets/bg4.jpg,https://anay.pages.dev/assets/bg2.jpg,https://anay.pages.dev/assets/bg1.jpg,https://anay.pages.dev/assets/bg3.jpg">
                             <h3>Andromeda Dashboard</h3>
                             <p>Data Visualization & UI Design</p>
                         </a>
                     </div>
-                    <div class="work-image-preview">
+                    <div class="work-image-preview interactive">
+                         <div class="work-image-overlay"><i class="fas fa-expand"></i></div>
                         <img src="" alt="Project preview image">
                     </div>
                 </div>
@@ -109,62 +112,60 @@
                 <!-- Mobile Accordion Layout -->
                 <div class="work-list-mobile">
                     <div class="work-item-mobile is-active">
-                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-1">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-mobile-1">
                             <div>
                                 <h3>Project Cygnus</h3>
                                 <p>UI/UX for a Next-Gen Music App</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="work-item-mobile__gallery" id="gallery-1">
-                            <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus Image 1">
-                            <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2">
-                                                        <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2">
-                                                                                    <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2">
+                        <div class="work-item-mobile__gallery" id="gallery-mobile-1">
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus Image 1"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg3.jpg" alt="Project Cygnus Image 3"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
                         </div>
                     </div>
-                    <div class="work-item-mobile is-active">
-                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-2">
+                    <div class="work-item-mobile">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="false" aria-controls="gallery-mobile-2">
                             <div>
                                 <h3>Orion Branding</h3>
                                 <p>Brand Identity for a Tech Startup</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="work-item-mobile__gallery" id="gallery-2">
-                            <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Orion Branding Image 1">
-                            <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Orion Branding Image 2">
+                        <div class="work-item-mobile__gallery" id="gallery-mobile-2">
+                            <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg2.jpg" alt="Orion Branding Image 1"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                            <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg4.jpg" alt="Orion Branding Image 2"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
                         </div>
                     </div>
-
-                <div class="work-item-mobile is-active">
-                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-2">
+                    <div class="work-item-mobile">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="false" aria-controls="gallery-mobile-3">
                             <div>
                                 <h3>Vega AI Website</h3>
                                 <p>Web Design for an AI Research Firm</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="work-item-mobile__gallery" id="gallery-2">
-                            <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Orion Branding Image 1">
-                            <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Orion Branding Image 2">
+                        <div class="work-item-mobile__gallery" id="gallery-mobile-3">
+                            <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg3.jpg" alt="Vega AI Image 1"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                            <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg1.jpg" alt="Vega AI Image 2"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
                         </div>
                     </div>
-
-                                        <div class="work-item-mobile is-active">
-                        <div class="work-item-mobile__title" role="button" aria-expanded="true" aria-controls="gallery-2">
+                    <div class="work-item-mobile">
+                        <div class="work-item-mobile__title" role="button" aria-expanded="false" aria-controls="gallery-mobile-4">
                             <div>
                                 <h3>Andromeda Dashboard</h3>
                                 <p>Data Visualization & UI Design</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="work-item-mobile__gallery" id="gallery-2">
-                            <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Orion Branding Image 1">
-                            <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Orion Branding Image 2">
+                        <div class="work-item-mobile__gallery" id="gallery-mobile-4">
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg4.jpg" alt="Andromeda Image 1"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg2.jpg" alt="Andromeda Image 2"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg1.jpg" alt="Andromeda Image 3"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
+                           <div class="gallery-image-wrapper"><img src="https://anay.pages.dev/assets/bg3.jpg" alt="Andromeda Image 4"><div class="enlarge-icon"><i class="fas fa-expand"></i></div></div>
                         </div>
                     </div>
-                    <!-- Add more mobile projects as needed -->
                 </div>
 
             </div>
@@ -207,6 +208,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- LIGHTBOX GALLERY -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" class="lightbox-image" alt="Enlarged project image">
+            <button class="lightbox-close" aria-label="Close gallery">×</button>
+            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">❮</button>
+            <button class="lightbox-nav lightbox-next" aria-label="Next image">❯</button>
+        </div>
+    </div>
+
 
     <!-- Your Script -->
     <script src="script.js"></script>
