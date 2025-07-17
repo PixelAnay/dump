@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
-    const smoothing = 0.2;
+    const smoothing = 0.15; // Adjusted smoothing for a slightly snappier feel
 
     if (window.matchMedia("(pointer: fine)").matches) {
         window.addEventListener('mousemove', e => {
@@ -20,14 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
         function animateCursor() {
             cursorX += (mouseX - cursorX) * smoothing;
             cursorY += (mouseY - cursorY) * smoothing;
-            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+            
+            // --- FIX START: Use left/top instead of transform ---
+            // This positions the cursor element from its top-left,
+            // allowing the CSS 'transform: translate(-50%, -50%)' to perfectly center it.
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            // --- FIX END ---
+            
             requestAnimationFrame(animateCursor);
         }
         animateCursor();
 
         interactiveElements.forEach(el => {
             el.addEventListener('mouseover', () => {
-                // FIX: Added .copy-button to this condition to ensure it gets the 'grow' cursor effect.
                 if (el.classList.contains('interactive') || el.classList.contains('btn') || el.classList.contains('enlarge-btn') || el.classList.contains('lightbox__nav') || el.classList.contains('copy-button')) {
                     cursor.classList.add('grow');
                 } else {

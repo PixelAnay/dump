@@ -78,12 +78,14 @@ img { max-width: 100%; display: block; object-fit: cover; }
     border: 2px solid var(--accent-color);
     border-radius: 50%;
     position: fixed;
+    /* FIX: This transform now reliably centers the cursor element on the pointer */
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 9999;
     transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, border-radius 0.3s, background-image 0.3s;
     mix-blend-mode: difference;
-    will-change: transform;
+    /* FIX: Hinting 'left' and 'top' for animation performance */
+    will-change: left, top, width, height, background-color, border-color;
 }
 .cursor.grow {
     width: 50px; height: 50px;
@@ -255,12 +257,11 @@ img { max-width: 100%; display: block; object-fit: cover; }
     margin-top: calc(-1 * var(--spacing-sm));
 }
 .accordion-item__description { margin-bottom: var(--spacing-sm); }
-/* FIX: Added padding to prevent button hover effect from being clipped */
 .project-links {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding-top: 5px; /* Gives room for translateY on hover */
+    padding-top: 5px; 
 }
 .project-links .btn { padding: 0.75rem 1.5rem; }
 
@@ -365,7 +366,6 @@ img { max-width: 100%; display: block; object-fit: cover; }
 .footer-link { color: var(--text-secondary); font-size: 0.9rem; transition: color var(--transition-fast); }
 .footer-link:hover { color: var(--text-primary); }
 
-/* FIX: Made button a larger, circular click target */
 .copy-button {
     background: none;
     border: 1px solid transparent; /* for alignment */
