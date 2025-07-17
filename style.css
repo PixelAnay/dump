@@ -445,3 +445,6 @@ input, textarea {
 
     .lightbox__close { right: 15px; }
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
