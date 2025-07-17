@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Anay Gawate</title>
+    <meta name="description" content="A comprehensive portfolio of web and software projects by Anay Gawate.">
+    <link rel="icon" href="https://anay.pages.dev/assets/svgfav.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Your Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">A<span>/</span>G</a>
+            <nav class="navbar">
+                <a href="index.html#about" class="nav-link">About</a>
+                <!-- Projects link removed -->
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#education-heading" class="nav-link" id="education-nav-link">Education</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Open menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ALL PROJECTS SECTION -->
+        <section class="content-section page-hero" id="all-projects">
+            <div class="container">
+                <h1 class="page-title">Project Archive</h1>
+                <p class="page-subtitle">A curated collection of my work, from full-stack applications to interactive front-end experiments.</p>
+                
+                <div class="project-showcase">
+
+                    <!-- Project 1: Offline Reddit -->
+                    <div class="project-entry animate-on-scroll">
+                        <div class="project-image-container">
+                            <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Offline Reddit Project Screenshot">
+                        </div>
+                        <div class="project-text-content">
+                            <span class="project-type">Desktop Application</span>
+                            <h3>Offline Reddit</h3>
+                            <div class="project-description">
+                                <p>A full-featured desktop application for downloading Reddit content for offline viewing. Built with a robust Electron and React backend, it focuses on a clean, intuitive UI and efficient data handling.</p>
+                            </div>
+                            <ul class="project-tech-list">
+                                <li>Electron</li>
+                                <li>React</li>
+                                <li>Node.js</li>
+                                <li>Styled-Components</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/pixelanay/OfflineReddit" class="btn btn-secondary interactive" target="_blank">View Code <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Retro BrowserOS -->
+                    <div class="project-entry animate-on-scroll">
+                        <div class="project-image-container">
+                            <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Retro BrowserOS Project Screenshot">
+                        </div>
+                        <div class="project-text-content">
+                            <span class="project-type">Interactive Frontend</span>
+                            <h3>Retro BrowserOS</h3>
+                            <p>An interactive web dashboard mimicking a retro-style operating system. This project showcases dynamic UI, complex state management with vanilla JS, and creative frontend development with a focus on animations.</p>
+                            <ul class="project-tech-list">
+                                <li>HTML5</li>
+                                <li>CSS3</li>
+                                <li>JavaScript</li>
+                                <li>GSAP</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://pixelanay.github.io/OS" class="btn btn-secondary interactive" target="_blank">Live Site <i class="fas fa-arrow-up-right-from-square"></i></a>
+                                <a href="https://github.com/PixelAnay/OS" class="btn btn-secondary interactive" target="_blank">View Code <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3: AI Task Manager -->
+                    <div class="project-entry animate-on-scroll">
+                        <div class="project-image-container">
+                            <img src="https://anay.pages.dev/assets/bg2.jpg" alt="AI Task Manager Project Screenshot">
+                        </div>
+                        <div class="project-text-content">
+                             <span class="project-type">Full-Stack Web App</span>
+                            <h3>AI Task Manager</h3>
+                            <p>A smart to-do list application that uses natural language processing to automatically categorize and prioritize tasks. The backend is powered by Python/Flask with a lightweight frontend.</p>
+                            <ul class="project-tech-list">
+                                <li>Python</li>
+                                <li>Flask</li>
+                                <li>SQLAlchemy</li>
+                                <li>NLTK</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-secondary interactive" target="_blank">View Code <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Identical) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/anaygawate/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/pixelanay" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/pixelanay" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+                 <div class="email-copy-container">
+                    <span id="emailToCopy" class="footer-link">pixel.anay@gmail.com</span>
+                    <button id="copyEmailButton" class="copy-button" aria-label="Copy email address" title="Copy email">
+                        <i class="far fa-copy"></i>
+                    </button>
+                    <span id="copyFeedback" class="copy-feedback">Copied!</span>
+                </div>
+                <p>© <span id="currentYear">2024</span> Anay Gawate. All Rights Reserved. Built from scratch.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
+// --- NEW: STAGGERED FADE-IN ANIMATION FOR PAGE CONTENT ---
+const animatedElements = document.querySelectorAll('.animate-on-scroll');
+if (animatedElements.length > 0) {
+    const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a staggered delay based on the element's order in the DOM
+                entry.target.style.transitionDelay = `${index * 100}ms`;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Stop observing once it's visible
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.1, // Trigger when 10% of the element is visible
+    });
 
+    animatedElements.forEach(el => {
+        animateOnScrollObserver.observe(el);
+    });
+}
     // --- WORK SECTION ACCORDION ---
     const accordionItems = document.querySelectorAll('.accordion-item');
     accordionItems.forEach(item => {
