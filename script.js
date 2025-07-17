@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         interactiveElements.forEach(el => {
             el.addEventListener('mouseover', () => {
-                if (el.classList.contains('interactive') || el.classList.contains('btn') || el.classList.contains('enlarge-btn') || el.classList.contains('lightbox__nav')) {
+                // FIX: Added .copy-button to this condition to ensure it gets the 'grow' cursor effect.
+                if (el.classList.contains('interactive') || el.classList.contains('btn') || el.classList.contains('enlarge-btn') || el.classList.contains('lightbox__nav') || el.classList.contains('copy-button')) {
                     cursor.classList.add('grow');
                 } else {
                     cursor.classList.add('link-hover');

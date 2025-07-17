@@ -147,6 +147,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
 .hero-title {
     font-size: clamp(3rem, 10vw, 5.5rem);
     margin-bottom: var(--spacing-sm); line-height: 1.1;
+        margin-top: 2.5rem;
     text-shadow: 0 0 20px var(--accent-glow); text-wrap: balance;
 }
 .hero-title span {
@@ -254,7 +255,13 @@ img { max-width: 100%; display: block; object-fit: cover; }
     margin-top: calc(-1 * var(--spacing-sm));
 }
 .accordion-item__description { margin-bottom: var(--spacing-sm); }
-.project-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+/* FIX: Added padding to prevent button hover effect from being clipped */
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 5px; /* Gives room for translateY on hover */
+}
 .project-links .btn { padding: 0.75rem 1.5rem; }
 
 .accordion-item__gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -357,11 +364,26 @@ img { max-width: 100%; display: block; object-fit: cover; }
 }
 .footer-link { color: var(--text-secondary); font-size: 0.9rem; transition: color var(--transition-fast); }
 .footer-link:hover { color: var(--text-primary); }
+
+/* FIX: Made button a larger, circular click target */
 .copy-button {
-    background: none; border: none; font-size: 1rem; color: var(--text-secondary);
-    transition: color var(--transition-fast), transform var(--transition-fast);
+    background: none;
+    border: 1px solid transparent; /* for alignment */
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 }
-.copy-button:hover { color: var(--accent-color); transform: scale(1.2); }
+.copy-button:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+    background-color: var(--accent-glow);
+}
 .copy-feedback {
     position: absolute; bottom: 120%;
     background-color: var(--accent-color); color: var(--dark-bg);
