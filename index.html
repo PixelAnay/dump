@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Thorne | Digital Designer & Futurist</title>
-    
+    <title>Anay Gawate | Web & Software Developer</title>
+    <meta name="description" content="Explore the portfolio of Anay Gawate, a passionate Computer Science student specializing in web development, software engineering, and innovative tech solutions.">
+    <link rel="icon" href="https://anay.pages.dev/assets/svgfav.svg" type="image/svg+xml">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +26,12 @@
     <!-- HEADER -->
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo">A<span>/</span>T</a>
+            <a href="#" class="logo">A<span>/</span>G</a>
             <nav class="navbar">
                 <a href="#about" class="nav-link">About</a>
-                <a href="#work" class="nav-link">Work</a>
+                <a href="#work" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <button class="hamburger" aria-label="Open menu">
@@ -47,9 +51,19 @@
                 <div class="stars3"></div>
             </div>
             <div class="hero-content">
-                <h1 class="hero-title" data-text-split>Designing The Digital Frontier</h1>
-                <p class="hero-subtitle">Crafting bold, intuitive, and futuristic user experiences that transcend the ordinary.</p>
-                <a href="#work" class="btn btn-primary interactive">Explore My Work</a>
+                <h1 class="hero-title" data-text-split>Hello, I'm Anay</h1>
+                <p class="hero-subtitle">I build fast, beautiful web apps. I am dedicated to crafting innovative solutions and continuously learning in the evolving tech landscape. Here’s my work!</p>
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary interactive">View My Work</a>
+                    <a href="https://anay.pages.dev/assets/functionalsample.pdf" class="btn btn-secondary interactive" download="AnayGawate-Resume.pdf">
+                        Download Resume <i class="fas fa-download"></i>
+                    </a>
+                </div>
+                 <div class="hero-socials">
+                    <a href="https://www.linkedin.com/in/anaygawate/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/pixelanay" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/pixelanay" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </section>
 
@@ -59,20 +73,10 @@
                 <h2 class="section-title">01 <span>//</span> About Me</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <h3>My Philosophy</h3>
-                        <p>Design is the art of solving problems with elegance. I operate at the intersection of aesthetic theory and technological innovation, building interfaces that are not just beautiful, but are extensions of human intuition. My work is fueled by a passion for minimalism, sci-fi, and pushing the boundaries of what's possible on the web.</p>
-                        <h3>Core Competencies</h3>
-                        <ul class="skills-list">
-                            <li class="interactive">UI/UX Design</li>
-                            <li class="interactive">Web & Mobile Design</li>
-                            <li class="interactive">Branding & Identity</li>
-                            <li class="interactive">Interaction Design</li>
-                            <li class="interactive">Figma / Adobe XD</li>
-                            <li class="interactive">Webflow Development</li>
-                        </ul>
+                        <p>I am currently pursuing a B.Tech in Computer Science. I thrive on building real stuff that works, from full-stack web apps to AI Interfaces. Whether it's solving technical puzzles, designing for humans, or digging through data, I'm all in. I’m here to contribute to teams that build great products.</p>
                     </div>
                     <div class="about-image interactive">
-                        <img src="https://anay.pages.dev/assets/bg1.jpg" alt="A photo of Alex Thorne">
+                        <img src="https://anay.pages.dev/assets/profile.jpg" alt="A photo of Anay Gawate">
                     </div>
                 </div>
             </div>
@@ -81,88 +85,131 @@
         <!-- WORK SECTION -->
         <section class="content-section" id="work">
             <div class="container">
-                <h2 class="section-title">02 <span>//</span> Selected Work</h2>
+                <h2 class="section-title">02 <span>//</span> Featured Projects</h2>
                 
-                <!-- UNIFIED ACCORDION LAYOUT (for all devices) -->
                 <div class="work-accordion">
                     <div class="accordion-item">
-                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="gallery-1">
+                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="project-1-content">
                             <div>
-                                <h3>Project Cygnus</h3>
-                                <p>UI/UX for a Next-Gen Music App</p>
+                                <h3>Offline Reddit</h3>
+                                <p>A full-featured Reddit content downloader</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="accordion-item__gallery" id="gallery-1">
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Cygnus Image 1">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                        <div class="accordion-item__content" id="project-1-content">
+                            <div class="accordion-item__details">
+                                <p class="accordion-item__description">A robust desktop application built with modern technologies, focused on a clean UI and a powerful backend for downloading Reddit content for offline viewing.</p>
+                                <div class="project-links">
+                                     <a href="https://github.com/pixelanay/OfflineReddit" class="btn btn-secondary interactive" target="_blank">View Code <i class="fab fa-github"></i></a>
+                                </div>
                             </div>
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Cygnus Image 2">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                            <div class="accordion-item__gallery">
+                                <div class="gallery-image-wrapper">
+                                    <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Project Image 1">
+                                    <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                                </div>
+                                <div class="gallery-image-wrapper">
+                                    <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Project Image 2">
+                                    <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="gallery-2">
+                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="project-2-content">
                             <div>
-                                <h3>Orion Branding</h3>
-                                <p>Brand Identity for a Tech Startup</p>
+                                <h3>Retro BrowserOS</h3>
+                                <p>Interactive web-based operating system</p>
                             </div>
                             <span class="toggle-icon"></span>
                         </div>
-                        <div class="accordion-item__gallery" id="gallery-2">
-                           <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg2.jpg" alt="Orion Branding Image 1">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                         <div class="accordion-item__content" id="project-2-content">
+                            <div class="accordion-item__details">
+                                <p class="accordion-item__description">An interactive web dashboard designed to mimic a retro-style operating system, showcasing dynamic UI elements and creative frontend development.</p>
+                                <div class="project-links">
+                                     <a href="https://pixelanay.github.io/OS" class="btn btn-primary interactive" target="_blank">Live Site <i class="fas fa-arrow-up-right-from-square"></i></a>
+                                     <a href="https://github.com/PixelAnay/OS" class="btn btn-secondary interactive" target="_blank">View Code <i class="fab fa-github"></i></a>
+                                </div>
                             </div>
-                             <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Orion Branding Image 2">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="gallery-3">
-                            <div>
-                                <h3>Vega AI Website</h3>
-                                <p>Web Design for an AI Research Firm</p>
-                            </div>
-                            <span class="toggle-icon"></span>
-                        </div>
-                        <div class="accordion-item__gallery" id="gallery-3">
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Vega AI Website Image 1">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
-                            </div>
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Vega AI Website Image 2">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item__title" role="button" aria-expanded="false" aria-controls="gallery-4">
-                            <div>
-                                <h3>Andromeda Dashboard</h3>
-                                <p>Data Visualization & UI Design</p>
-                            </div>
-                            <span class="toggle-icon"></span>
-                        </div>
-                        <div class="accordion-item__gallery" id="gallery-4">
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Andromeda Dashboard Image 1">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
-                            </div>
-                            <div class="gallery-image-wrapper">
-                                <img src="https://anay.pages.dev/assets/bg1.jpg" alt="Andromeda Dashboard Image 2">
-                                <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                            <div class="accordion-item__gallery">
+                               <div class="gallery-image-wrapper">
+                                    <img src="https://anay.pages.dev/assets/bg3.jpg" alt="Project Image 1">
+                                    <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                                </div>
+                                 <div class="gallery-image-wrapper">
+                                    <img src="https://anay.pages.dev/assets/bg4.jpg" alt="Project Image 2">
+                                    <button class="enlarge-btn" aria-label="Enlarge image"><i class="fas fa-expand"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                 <div class="see-all-container">
+                    <a href="#" class="btn btn-secondary interactive">See All Projects</a>
+                </div>
+            </div>
+        </section>
 
+        <!-- SKILLS SECTION -->
+        <section class="content-section" id="skills">
+            <div class="container">
+                <h2 class="section-title">03 <span>//</span> Technical Skills</h2>
+                <ul class="skills-list">
+                    <li class="interactive">Java</li>
+                    <li class="interactive">Python</li>
+                    <li class="interactive">JavaScript</li>
+                    <li class="interactive">React.js</li>
+                    <li class="interactive">HTML5 & CSS3</li>
+                    <li class="interactive">SASS</li>
+                    <li class="interactive">SQL</li>
+                    <li class="interactive">Git & GitHub</li>
+                    <li class="interactive">Data Structures</li>
+                    <li class="interactive">Algorithms</li>
+                    <li class="interactive">Figma</li>
+                    <li class="interactive">Webflow</li>
+                </ul>
+                <div class="see-all-container">
+                    <a href="#" class="btn btn-secondary interactive">View All Skills</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE & EDUCATION SECTION -->
+        <section class="content-section" id="experience">
+            <div class="container">
+                <div class="dual-section-container">
+                    <div class="timeline-column">
+                        <h2 class="section-title">04 <span>//</span> Experience</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                                <h3>Software Engineering Intern</h3>
+                                <span class="company-school">Innovatech Solutions Ltd.</span>
+                                <span class="date">Summer 2023</span>
+                                <p>Contributed to the development of a new client portal using Angular and Spring Boot, enhancing front-end performance and user experience.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-chalkboard-user"></i></div>
+                                <h3>Teaching Assistant</h3>
+                                <span class="company-school">State University, CS Dept.</span>
+                                <span class="date">Fall 2022 - Spring 2023</span>
+                                <p>Assisted professors in teaching foundational programming concepts in Python to over 100 students, leading lab sessions and grading assignments.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-column">
+                        <h2 class="section-title">05 <span>//</span> Education</h2>
+                        <div class="timeline">
+                             <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <h3>B.Sc. in Computer Science</h3>
+                                <span class="company-school">State University</span>
+                                <span class="date">Expected May 2029</span>
+                                <p>Relevant Coursework: Data Structures & Algorithms, Web Development (Full Stack), Operating Systems, Artificial Intelligence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -170,18 +217,21 @@
         <!-- CONTACT SECTION -->
         <section class="content-section" id="contact">
             <div class="container">
-                <h2 class="section-title">03 <span>//</span> Let's Collaborate</h2>
-                <p class="contact-intro">Have a visionary project? I'm currently available for freelance opportunities. Let's build the future together.</p>
+                <h2 class="section-title">06 <span>//</span> Get In Touch</h2>
+                <p class="contact-intro">I'm always excited to connect and discuss potential projects or opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
                 <div class="contact-form-container">
-                    <form action="#" method="POST" class="contact-form">
+                    <form action="https://formspree.io/f/mgvkgypw" method="POST" class="contact-form">
                         <div class="form-group">
-                            <input type="text" name="name" id="name" required placeholder="Your Name">
+                             <label for="name">Your Name</label>
+                            <input type="text" name="name" id="name" required placeholder="e.g. Jane Doe">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" required placeholder="Your Email">
+                            <label for="email">Your Email</label>
+                            <input type="email" name="email" id="email" required placeholder="your.email@example.com">
                         </div>
                         <div class="form-group">
-                            <textarea name="message" id="message" rows="5" required placeholder="Project Details"></textarea>
+                             <label for="message">Your Message</label>
+                            <textarea name="message" id="message" rows="5" required placeholder="Project details or hello..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary interactive">Send Transmission</button>
                     </form>
@@ -195,11 +245,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-socials">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/anaygawate/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/pixelanay" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/pixelanay" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
-                <p>© 2024 Alex Thorne. All Rights Reserved. Built from scratch.</p>
+                 <div class="email-copy-container">
+                    <span id="emailToCopy" class="footer-link">pixel.anay@gmail.com</span>
+                    <button id="copyEmailButton" class="copy-button" aria-label="Copy email address" title="Copy email">
+                        <i class="far fa-copy"></i>
+                    </button>
+                    <span id="copyFeedback" class="copy-feedback">Copied!</span>
+                </div>
+                <p>© <span id="currentYear">2024</span> Anay Gawate. All Rights Reserved. Built from scratch.</p>
             </div>
         </div>
     </footer>

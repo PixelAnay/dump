@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- CUSTOM CURSOR ---
     const cursor = document.querySelector('.cursor');
-    // Simplified selector for all interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .interactive, .accordion-item__title, .gallery-image-wrapper, .lightbox__nav');
+    // Updated selector for all interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .interactive, .accordion-item__title, .gallery-image-wrapper, .lightbox__nav, .copy-button');
     const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
     const smoothing = 0.2;
 
-    if (window.matchMedia("(pointer: fine)").matches) { // Only run cursor logic on devices with fine pointers (mice)
+    if (window.matchMedia("(pointer: fine)").matches) {
         window.addEventListener('mousemove', e => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     cursor.classList.add('link-hover');
                 }
-                if (el.classList.contains('btn')) {
+                 if (el.classList.contains('btn')) {
                     el.classList.add('is-hovered');
                 }
             });
             el.addEventListener('mouseleave', () => {
                 cursor.classList.remove('grow');
                 cursor.classList.remove('link-hover');
-                if (el.classList.contains('btn')) {
+                 if (el.classList.contains('btn')) {
                     el.classList.remove('is-hovered');
                 }
             });
@@ -51,18 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- WORK SECTION ACCORDION (UNIFIED FOR ALL DEVICES) ---
+    // --- WORK SECTION ACCORDION ---
     const accordionItems = document.querySelectorAll('.accordion-item');
     accordionItems.forEach(item => {
         const title = item.querySelector('.accordion-item__title');
         title.addEventListener('click', () => {
             const wasActive = item.classList.contains('is-active');
-            // Close all items
             accordionItems.forEach(otherItem => {
                 otherItem.classList.remove('is-active');
                 otherItem.querySelector('.accordion-item__title').setAttribute('aria-expanded', 'false');
             });
-            // If the clicked item wasn't already active, open it
             if (!wasActive) {
                 item.classList.add('is-active');
                 title.setAttribute('aria-expanded', 'true');
@@ -83,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     // --- HIDE/SHOW HEADER ON SCROLL ---
     let lastScrollY = window.scrollY;
     const header = document.querySelector('.header');
@@ -96,14 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollY = window.scrollY;
     });
 
-
     // --- MOBILE NAVIGATION ---
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     hamburger.addEventListener('click', () => {
         body.classList.toggle('nav-open');
-        body.classList.toggle('body-no-scroll'); // Prevent scroll when nav is open
+        body.classList.toggle('body-no-scroll');
     });
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -112,8 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
-    // --- FADE-IN SECTION ON SCROLL (Intersection Observer) ---
+    // --- FADE-IN SECTION ON SCROLL ---
     const sections = document.querySelectorAll('.content-section');
     const revealSection = (entries, observer) => {
         const [entry] = entries;
@@ -127,8 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     sections.forEach(section => sectionObserver.observe(section));
 
-
-    // --- LIGHTBOX GALLERY (UNIFIED FOR ALL DEVICES) ---
+    // --- LIGHTBOX GALLERY ---
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
         const lightboxImg = lightbox.querySelector('.lightbox__image');
@@ -157,38 +151,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const showImage = () => {
             if (currentImageIndex < 0 || currentImageIndex >= currentGalleryImages.length) return;
             lightboxImg.src = currentGalleryImages[currentImageIndex];
-            
-            // Re-trigger fade-in animation for image change
             lightboxImg.style.animation = 'none';
-            void lightboxImg.offsetWidth; // This is a trick to force a reflow
+            void lightboxImg.offsetWidth;
             lightboxImg.style.animation = '';
-
             lightboxCounter.textContent = `${currentImageIndex + 1} / ${currentGalleryImages.length}`;
             prevBtn.style.display = currentGalleryImages.length > 1 && currentImageIndex > 0 ? 'flex' : 'none';
             nextBtn.style.display = currentGalleryImages.length > 1 && currentImageIndex < currentGalleryImages.length - 1 ? 'flex' : 'none';
         };
 
-        const showNextImage = () => {
-            if (currentImageIndex < currentGalleryImages.length - 1) {
-                currentImageIndex++;
-                showImage();
-            }
-        };
-        
-        const showPrevImage = () => {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                showImage();
-            }
-        };
+        const showNextImage = () => { if (currentImageIndex < currentGalleryImages.length - 1) { currentImageIndex++; showImage(); } };
+        const showPrevImage = () => { if (currentImageIndex > 0) { currentImageIndex--; showImage(); } };
 
-        // Event Listeners for Lightbox controls
         closeBtn.addEventListener('click', closeLightbox);
         nextBtn.addEventListener('click', showNextImage);
         prevBtn.addEventListener('click', showPrevImage);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('is-open')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -196,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'ArrowLeft') showPrevImage();
         });
 
-        // Event Delegation for all "enlarge" buttons
         const workAccordion = document.querySelector('.work-accordion');
         if (workAccordion) {
             workAccordion.addEventListener('click', (e) => {
@@ -213,5 +189,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 openLightbox(allImageSrcs, clickedIndex);
             });
         }
+    }
+
+    // --- FOOTER: DYNAMIC YEAR ---
+    const currentYearEl = document.getElementById('currentYear');
+    if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+    }
+
+    // --- FOOTER: EMAIL COPY ---
+    const copyBtn = document.getElementById('copyEmailButton');
+    const emailTextEl = document.getElementById('emailToCopy');
+    const copyFeedbackEl = document.getElementById('copyFeedback');
+    if (copyBtn && emailTextEl && copyFeedbackEl) {
+        copyBtn.addEventListener('click', () => {
+            const email = emailTextEl.textContent.trim();
+            navigator.clipboard.writeText(email).then(() => {
+                copyFeedbackEl.classList.add('is-visible');
+                setTimeout(() => {
+                    copyFeedbackEl.classList.remove('is-visible');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy email: ', err);
+            });
+        });
     }
 });
