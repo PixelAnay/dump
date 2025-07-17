@@ -36,15 +36,12 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
+    /* FIX: Disable text selection across the site */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* IE 10+ and Edge */
+    user-select: none;         /* Standard syntax */
 }
 .body-no-scroll { overflow: hidden; }
-
-a, button { cursor: none; }
-input[type="text"], input[type="email"], textarea {
-    cursor: none;
-    caret-color: transparent;
-}
 
 /* Custom Scrollbar */
 body::-webkit-scrollbar { width: 8px; }
@@ -71,43 +68,12 @@ img { max-width: 100%; display: block; object-fit: cover; }
     outline-offset: 3px;
 }
 
-
-/* --- CUSTOM CURSOR --- */
-.cursor {
-    width: 25px; height: 25px;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    position: fixed;
-    /* FIX: This transform now reliably centers the cursor element on the pointer */
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, border-radius 0.3s, background-image 0.3s;
-    mix-blend-mode: difference;
-    /* FIX: Hinting 'left' and 'top' for animation performance */
-    will-change: left, top, width, height, background-color, border-color;
+/* FIX: Re-enable text selection for form inputs for usability */
+input, textarea {
+    -webkit-user-select: text; /* Safari */
+    -ms-user-select: text;     /* IE 10+ and Edge */
+    user-select: text;         /* Standard syntax */
 }
-.cursor.grow {
-    width: 50px; height: 50px;
-    background-color: var(--accent-glow);
-    border-color: transparent;
-}
-.cursor.link-hover {
-    width: 8px; height: 8px;
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    mix-blend-mode: normal;
-}
-.cursor.typing {
-    width: 2px; height: 25px;
-    border-radius: 2px;
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    mix-blend-mode: normal;
-    animation: blink 1s infinite;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@media (max-width: 1024px) { .cursor { display: none; } }
 
 
 /* --- HEADER --- */
@@ -217,6 +183,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     padding: 0.5rem 1rem; border: 1px solid var(--border-color);
     border-radius: 5px; font-weight: 400;
     transition: background-color var(--transition-fast), color var(--transition-fast);
+    cursor: pointer;
 }
 .skills-list li:hover { background-color: var(--accent-color); color: var(--dark-bg); }
 .see-all-container { margin-top: var(--spacing-lg); text-align: center; }
@@ -228,6 +195,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
 .accordion-item__title {
     padding: var(--spacing-md) 0; display: flex; justify-content: space-between;
     align-items: center; transition: color var(--transition-fast);
+    cursor: pointer;
 }
 .accordion-item__title:hover { color: var(--accent-color); }
 .accordion-item__title h3 {
@@ -261,7 +229,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding-top: 5px; 
+    padding-top: 5px;
 }
 .project-links .btn { padding: 0.75rem 1.5rem; }
 
@@ -277,6 +245,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     font-size: 12px; opacity: 0; transform: scale(0.8);
     transition: opacity var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
     z-index: 5;
+    cursor: pointer;
 }
 .gallery-image-wrapper:hover .enlarge-btn { opacity: 1; transform: scale(1); }
 .enlarge-btn:hover { background-color: var(--accent-color); color: var(--dark-bg); transform: scale(1.1) !important; }
@@ -330,12 +299,13 @@ img { max-width: 100%; display: block; object-fit: cover; }
     border-radius: 5px; transition: all var(--transition-med);
     display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
     border: 2px solid transparent; text-align: center; white-space: nowrap;
+    cursor: pointer;
 }
 .btn-primary {
     background-color: var(--accent-color); color: var(--dark-bg);
     border-color: var(--accent-color);
 }
-.btn-primary.is-hovered, .btn-primary:hover {
+.btn-primary:hover {
     background-color: var(--dark-bg); color: var(--text-primary);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 20px var(--accent-glow);
@@ -344,7 +314,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     background-color: transparent; color: var(--text-primary);
     border-color: var(--border-color);
 }
-.btn-secondary.is-hovered, .btn-secondary:hover {
+.btn-secondary:hover {
     background-color: var(--accent-color); color: var(--dark-bg);
     border-color: var(--accent-color);
     transform: translateY(-3px);
@@ -368,7 +338,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
 
 .copy-button {
     background: none;
-    border: 1px solid transparent; /* for alignment */
+    border: 1px solid transparent;
     font-size: 1rem;
     color: var(--text-secondary);
     transition: color var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
@@ -378,6 +348,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     width: 32px;
     height: 32px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .copy-button:hover {
     color: var(--accent-color);
@@ -412,6 +383,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     position: fixed; top: 20px; right: 30px; font-size: 3rem; font-weight: 300; line-height: 1;
     color: var(--text-secondary); background: none; border: none;
     transition: color var(--transition-fast), transform var(--transition-fast);
+    cursor: pointer;
 }
 .lightbox__close:hover { color: var(--text-primary); transform: scale(1.1); }
 .lightbox__nav {
@@ -420,6 +392,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
     border: 1px solid var(--border-color); border-radius: 50%;
     width: 50px; height: 50px; font-size: 1.5rem; display: flex;
     justify-content: center; align-items: center; transition: background-color var(--transition-fast); z-index: 10;
+    cursor: pointer;
 }
 .lightbox__nav:hover { background-color: var(--accent-color); }
 .lightbox__prev { left: 20px; }
@@ -435,7 +408,7 @@ img { max-width: 100%; display: block; object-fit: cover; }
 @media (max-width: 1024px) {
     /* Mobile nav styles */
     .navbar { display: none; }
-    .hamburger { display: block; background: none; border: none; z-index: 1001; width: 30px; height: 22px; position: relative; }
+    .hamburger { display: block; background: none; border: none; z-index: 1001; width: 30px; height: 22px; position: relative; cursor: pointer; }
     .hamburger .bar { width: 100%; height: 2px; background-color: var(--text-primary); border-radius: 2px; position: absolute; left: 0; transition: all 0.4s ease-in-out; }
     .hamburger .bar:nth-child(1) { top: 0; }
     .hamburger .bar:nth-child(2) { top: 50%; transform: translateY(-50%); }

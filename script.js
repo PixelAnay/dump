@@ -1,63 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
 
-    // --- CUSTOM CURSOR ---
-    const cursor = document.querySelector('.cursor');
-    // Updated selector for all interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .interactive, .accordion-item__title, .gallery-image-wrapper, .lightbox__nav, .copy-button');
-    const formInputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
-
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    const smoothing = 0.15; // Adjusted smoothing for a slightly snappier feel
-
-    if (window.matchMedia("(pointer: fine)").matches) {
-        window.addEventListener('mousemove', e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * smoothing;
-            cursorY += (mouseY - cursorY) * smoothing;
-            
-            // --- FIX START: Use left/top instead of transform ---
-            // This positions the cursor element from its top-left,
-            // allowing the CSS 'transform: translate(-50%, -50%)' to perfectly center it.
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
-            // --- FIX END ---
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseover', () => {
-                if (el.classList.contains('interactive') || el.classList.contains('btn') || el.classList.contains('enlarge-btn') || el.classList.contains('lightbox__nav') || el.classList.contains('copy-button')) {
-                    cursor.classList.add('grow');
-                } else {
-                    cursor.classList.add('link-hover');
-                }
-                 if (el.classList.contains('btn')) {
-                    el.classList.add('is-hovered');
-                }
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('grow');
-                cursor.classList.remove('link-hover');
-                 if (el.classList.contains('btn')) {
-                    el.classList.remove('is-hovered');
-                }
-            });
-        });
-
-        formInputs.forEach(input => {
-            input.addEventListener('focus', () => cursor.classList.add('typing'));
-            input.addEventListener('blur', () => cursor.classList.remove('typing'));
-        });
-    }
-
     // --- WORK SECTION ACCORDION ---
     const accordionItems = document.querySelectorAll('.accordion-item');
     accordionItems.forEach(item => {
