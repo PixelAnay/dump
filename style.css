@@ -95,7 +95,7 @@ input, textarea {
 }
 .logo span { color: var(--accent-color); }
 .navbar { display: flex; gap: var(--spacing-md); }
-.nav-link { font-size: 1rem; color: var(--text-primary); position: relative; padding: 0.5rem 0; }
+.nav-link { font-size: 0.7rem; color: var(--text-primary); position: relative; padding: 0.5rem 0; }
 .nav-link::after {
     content: ''; position: absolute; bottom: 0; left: 50%;
     transform: translateX(-50%); width: 0; height: 2px;
