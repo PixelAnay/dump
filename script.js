@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         body.classList.toggle('body-no-scroll');
     });
     navLinks.forEach(link => {
+        // This general listener closes the menu. The specific listener below handles the scroll.
         link.addEventListener('click', () => {
             body.classList.remove('nav-open');
             body.classList.remove('body-no-scroll');
@@ -162,6 +163,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }).catch(err => {
                 console.error('Failed to copy email: ', err);
             });
+        });
+    }
+
+    // --- NEW: INTELLIGENT SCROLL FOR EDUCATION LINK ---
+    const educationNavLink = document.getElementById('education-nav-link');
+    if (educationNavLink) {
+        educationNavLink.addEventListener('click', function(event) {
+            // On desktop screens (where the columns are side-by-side)
+            if (window.innerWidth > 768) {
+                // Prevent the default jump to #education-heading
+                event.preventDefault();
+                
+                // Instead, scroll to the parent #experience section
+                const experienceSection = document.getElementById('experience');
+                if (experienceSection) {
+                    experienceSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            // On mobile screens (<= 768px), this code doesn't run,
+            // so the link's default behavior (href="#education-heading") works as intended.
         });
     }
 });
