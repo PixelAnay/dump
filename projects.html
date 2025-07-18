@@ -23,6 +23,34 @@
         For best practice, move them into your main 'style.css' file.
     -->
     <style>
+        /* --- Project Showcase Section --- */
+
+        /* NEW: Add accent separators using pseudo-elements */
+        .project-showcase::before,
+        .project-showcase::after {
+            content: '';
+            display: block;
+            width: 100%;  /* Or whatever width you use for other separators */
+            height: 4px;  /* A good thickness */
+            /* 
+               IMPORTANT: Replace this with your actual accent color. 
+               Using a CSS variable is best practice.
+            */
+            background-color: #ffffff; /* Example accent color (teal) */
+            margin-left: auto;
+            border-radius: 10px;
+            margin-right: auto;
+        }
+
+        /* Space out the separators from the content */
+        .project-showcase::before {
+            margin-bottom: 3rem;
+        }
+        .project-showcase::after {
+            margin-top: 3rem;
+        }
+
+
         /* --- Project Entry Layout --- */
 
         /* Mobile-first: The new HTML order naturally creates the desired vertical stack. */
@@ -30,6 +58,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem; /* Space between title, image, and footer sections */
+            padding-bottom: 3rem; 
         }
 
         .project-details-footer {
@@ -44,11 +73,17 @@
                 display: grid;
                 align-items: center;
                 gap: 2rem 4rem; /* row-gap column-gap */
+                padding-top: 0; /* Reset padding as it's handled by the separator or grid gap */
+                padding-bottom: 0;
+            }
+
+            .project-entry + .project-entry {
+                 padding-top: 3rem;
             }
 
             /* Configuration for ODD rows (1st, 3rd, etc.): Image on LEFT */
             .project-entry:nth-child(odd) {
-                grid-template-columns: 6fr 5fr; /* Asymmetrical columns for visual interest */
+                grid-template-columns: 6fr 5fr;
                 grid-template-areas: 
                     "image header"
                     "image footer";
@@ -60,7 +95,7 @@
             
             /* Configuration for EVEN rows (2nd, etc.): Image on RIGHT */
             .project-entry:nth-child(even) {
-                grid-template-columns: 5fr 6fr; /* Flipped column sizes */
+                grid-template-columns: 5fr 6fr;
                 grid-template-areas: 
                     "header image"
                     "footer image";
