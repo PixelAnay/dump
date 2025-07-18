@@ -231,23 +231,37 @@
             <div class="container">
                 <h2 class="section-title">06 <span>//</span> Get In Touch</h2>
                 <p class="contact-intro">I'm always excited to connect and discuss potential projects or opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
-                <div class="contact-form-container">
-                    <form action="https://formspree.io/f/mgvkgypw" method="POST" class="contact-form">
-                        <div class="form-group">
-                             <label for="name">Your Name</label>
-                            <input type="text" name="name" id="name" required placeholder="e.g. Jane Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" name="email" id="email" required placeholder="your.email@example.com">
-                        </div>
-                        <div class="form-group">
-                             <label for="message">Your Message</label>
-                            <textarea name="message" id="message" rows="5" required placeholder="Project details or hello..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary interactive">Send Transmission</button>
-                    </form>
-                </div>
+                <!-- In index.html, inside the contact section... -->
+
+<div class="contact-form-container">
+        <!-- START: NEW EMAIL LINK SECTION -->
+ 
+
+    <a href="mailto:pixel.anay@gmail.com" class="contact-email-link interactive">
+        <i class="far fa-envelope"></i>
+        <span>pixel.anay@gmail.com</span>
+    </a>
+       <div class="form-divider"><span>OR</span></div>
+    <!-- END: NEW EMAIL LINK SECTION -->
+    <form action="https://formspree.io/f/mgvkgypw" method="POST" class="contact-form">
+        <div class="form-group">
+             <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" required placeholder="e.g. Jane Doe">
+        </div>
+        <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" name="email" id="email" required placeholder="your.email@example.com">
+        </div>
+        <div class="form-group">
+             <label for="message">Your Message</label>
+            <textarea name="message" id="message" rows="5" required placeholder="Project details or hello..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary interactive">Send</button>
+    </form>
+
+
+
+</div>
             </div>
         </section>
     </main>
@@ -267,7 +281,7 @@
                     </button>
                     <span id="copyFeedback" class="copy-feedback">Copied!</span>
                 </div>
-                <p>© <span id="currentYear">2024</span> Anay Gawate. All Rights Reserved. Built from scratch.</p>
+                <p>© <span id="currentYear">2024</span> Anay Gawate. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
