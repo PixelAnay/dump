@@ -113,7 +113,8 @@ input, textarea {
     font-size: clamp(3rem, 10vw, 5.5rem);
     margin-bottom: var(--spacing-sm); line-height: 1.1;
     margin-top: 2.5rem;
-    text-shadow: 0 0 20px var(--accent-glow); text-wrap: balance;
+    text-shadow: 0 0 20px var(--accent-glow); 
+    white-space: nowrap; /* Add this line */
 }
 .hero-title span {
     display: inline-block; opacity: 0;
@@ -252,7 +253,10 @@ input, textarea {
     z-index: 5;
     cursor: pointer;
 }
-.gallery-image-wrapper:hover .enlarge-btn { opacity: 1; transform: scale(1); }
+.gallery-image-wrapper:hover .enlarge-btn,
+.project-main-image:hover .enlarge-btn { 
+    opacity: 1; transform: scale(1); 
+}
 .enlarge-btn:hover { background-color: var(--accent-color); color: var(--dark-bg); transform: scale(1.1) !important; }
 
 
@@ -428,6 +432,32 @@ input, textarea {
     text-align: center;
     font-weight: 300;
 }
+/* --- SHARED STYLES FOR NEW PAGES --- */
+.page-hero {
+    padding-top: var(--spacing-xl);
+    padding-bottom: 0;
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    line-height: 1.1;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.page-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    max-width: 600px;
+    margin: var(--spacing-sm) auto var(--spacing-lg);
+    text-align: center;
+    font-weight: 300;
+}
+
+/* --- ADD THIS NEW RULE --- */
+/* Removes the large top padding on a section that directly follows a page hero */
+.page-hero + .content-section {
+    padding-top: 0;
+}
 
 /* --- REDESIGNED PROJECTS PAGE --- */
 .project-showcase {
@@ -445,20 +475,52 @@ input, textarea {
     order: 2;
 }
 .project-image-container {
+    /* This is now a flex container for main image and thumbnails */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.project-main-image {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
+    position: relative; /* For the enlarge button */
     transition: box-shadow var(--transition-med);
 }
-.project-image-container img {
+.project-main-image img {
     transition: transform var(--transition-med);
+    aspect-ratio: 16 / 10;
 }
-.project-image-container:hover {
-    box-shadow: 0 0 30px var(--accent-glow);
+
+.project-main-image:hover img {
+    
 }
-.project-image-container:hover img {
-    transform: scale(1.05);
+
+/* NEW THUMBNAIL STYLES */
+.project-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.75rem;
 }
+.project-thumbnails img {
+    height: 60px;
+    border-radius: 4px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast), border-color var(--transition-fast);
+}
+.project-thumbnails img:hover {
+    opacity: 1;
+    border-color: var(--accent-color);
+}
+.project-thumbnails img.is-active {
+    opacity: 1;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+/* END NEW THUMBNAIL STYLES */
+
 .project-text-content {
     display: flex;
     flex-direction: column;
@@ -550,7 +612,7 @@ input, textarea {
 .skill-items-list li:hover {
     transform: translateY(-3px);
     color: #fff;
-    box-shadow: 0 0 15px var(--accent-glow);
+
 }
 
 /* --- RESPONSIVE DESIGN --- */

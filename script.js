@@ -144,6 +144,7 @@ if (animatedElements.length > 0) {
             if (e.key === 'ArrowLeft') showPrevImage();
         });
 
+        // --- ACCORDION GALLERY (INDEX PAGE) ---
         const workAccordion = document.querySelector('.work-accordion');
         if (workAccordion) {
             workAccordion.addEventListener('click', (e) => {
@@ -160,6 +161,54 @@ if (animatedElements.length > 0) {
                 openLightbox(allImageSrcs, clickedIndex);
             });
         }
+        
+        // --- NEW/IMPROVED: PROJECTS PAGE THUMBNAIL GALLERY ---
+        const projectEntries = document.querySelectorAll('.project-entry[data-gallery-images]');
+        projectEntries.forEach(entry => {
+            const mainImageContainer = entry.querySelector('.project-main-image');
+            const mainImage = mainImageContainer.querySelector('img');
+            const thumbnailsContainer = entry.querySelector('.project-thumbnails');
+            const enlargeBtn = entry.querySelector('.enlarge-btn');
+
+            const imageUrls = entry.dataset.galleryImages.split(',').map(s => s.trim()).filter(Boolean);
+            
+            if (imageUrls.length > 1) {
+                // 1. Create thumbnails
+                thumbnailsContainer.innerHTML = ''; // Clear placeholder
+                imageUrls.forEach((url, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = url;
+                    thumb.alt = `Project thumbnail ${index + 1}`;
+                    thumb.dataset.index = index;
+                    if (index === 0) {
+                        thumb.classList.add('is-active');
+                    }
+                    thumbnailsContainer.appendChild(thumb);
+                });
+
+                // 2. Add click listener to thumbnails
+                thumbnailsContainer.addEventListener('click', e => {
+                    if (e.target.tagName === 'IMG') {
+                        const newIndex = parseInt(e.target.dataset.index, 10);
+                        mainImage.src = imageUrls[newIndex];
+                        mainImageContainer.dataset.currentIndex = newIndex;
+
+                        // Update active state
+                        thumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('is-active'));
+                        e.target.classList.add('is-active');
+                    }
+                });
+            } else {
+                 thumbnailsContainer.style.display = 'none'; // Hide thumbnail area if only one image
+            }
+
+            // 3. Add click listener for opening the lightbox
+            enlargeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const startIndex = parseInt(mainImageContainer.dataset.currentIndex, 10) || 0;
+                openLightbox(imageUrls, startIndex);
+            });
+        });
     }
 
     // --- FOOTER: DYNAMIC YEAR ---
@@ -186,23 +235,18 @@ if (animatedElements.length > 0) {
         });
     }
 
-    // --- NEW: INTELLIGENT SCROLL FOR EDUCATION LINK ---
+    // --- INTELLIGENT SCROLL FOR EDUCATION LINK ---
     const educationNavLink = document.getElementById('education-nav-link');
     if (educationNavLink) {
         educationNavLink.addEventListener('click', function(event) {
             // On desktop screens (where the columns are side-by-side)
             if (window.innerWidth > 768) {
-                // Prevent the default jump to #education-heading
                 event.preventDefault();
-                
-                // Instead, scroll to the parent #experience section
                 const experienceSection = document.getElementById('experience');
                 if (experienceSection) {
                     experienceSection.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-            // On mobile screens (<= 768px), this code doesn't run,
-            // so the link's default behavior (href="#education-heading") works as intended.
         });
     }
 });
