@@ -518,7 +518,8 @@ input, textarea {
 .project-entry:not(:last-child) {
     margin-bottom: 0px;
     position: relative;
-    padding-bottom: var(--spacing-xl);
+    padding-top: 2rem;
+    padding-bottom: 4rem;
 }
 
 .project-entry:not(:last-child)::after {
@@ -554,6 +555,8 @@ input, textarea {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
     align-items: center;
+      padding-top: 2rem;
+    padding-bottom: 4rem;
 }
 .project-entry:nth-child(even) .project-image-container {
     order: 2;
@@ -576,9 +579,6 @@ input, textarea {
     aspect-ratio: 16 / 10;
 }
 
-.project-main-image:hover img {
-    
-}
 
 /* NEW THUMBNAIL STYLES */
 .project-thumbnails {
